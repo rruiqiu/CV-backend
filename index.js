@@ -24,6 +24,17 @@ app.get("/", function (req, res) {
   res.send("Hello world")
 })
 
+app.get("/userdata", function (req, res) {
+  Post.find(function (err, foundArticles) {
+    if (!err) {
+      res.send(foundArticles)
+    } else {
+      res.send(err)
+    }
+  })
+})
+
+
 app.post("/information", function (req, res) {
   const body = req.body
 
