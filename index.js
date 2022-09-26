@@ -20,6 +20,17 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model("Post", postSchema)
 
 
+const authSchema = new mongoose.Schema({
+  username: String,
+  password: String,
+})
+
+// app.get("/login",function(req,res){
+//   authSchema.find(function(err,foundauth){
+
+//   })
+// })
+
 app.get("/", function (req, res) {
   res.send("Hello world")
 })
@@ -34,6 +45,15 @@ app.get("/userdata", function (req, res) {
   })
 })
 
+app.delete("/userdata", function (req, res) {
+  Post.deleteMany(function (err) {
+    if (!err) {
+      res.send("Successfully deleted all articles.");
+    } else {
+      res.send(err);
+    }
+  });
+})
 
 app.post("/information", function (req, res) {
   const body = req.body
