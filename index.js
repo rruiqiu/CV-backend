@@ -25,11 +25,38 @@ const authSchema = new mongoose.Schema({
   password: String,
 })
 
+const Auth = mongoose.model("Auth", authSchema)
+
+// const user = new Auth({
+//   username: "qiur12",
+//   password: "731006",
+// })
+// user.save()
+
 // app.get("/login",function(req,res){
 //   authSchema.find(function(err,foundauth){
 
 //   })
 // })
+
+// login page
+app.post("/login", (req, res) => {
+  console.log(req.body);
+  const { name, password } = req.body;
+  Auth.findOne({ username: name }, function (err, foundUser) {
+    if (foundUser) {
+      if (password === foundUser.password) {
+        res.send({ message: "login sucess", status: true, user: foundUser })
+        // res.redirect(301, 'https://google.com')
+      } else {
+        res.send({ message: "wrong credentials", })
+      }
+    } else {
+      res.send("not register")
+    }
+  })
+});
+// end
 
 app.get("/", function (req, res) {
   res.send("Hello world")
