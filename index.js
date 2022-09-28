@@ -58,6 +58,23 @@ app.post("/login", (req, res) => {
 });
 // end
 
+app.delete("/userdata/:id", (req, res) => {
+  console.log(req.params.id)
+  const requestDeleteId = req.params.id
+  Post.deleteOne({ _id: requestDeleteId }, function (err) {
+    if (!err) {
+      res.send("Successfully Deleted")
+    } else {
+      res.send(err)
+    }
+  })
+
+  // res.status(200).json({
+  //   message: "Post deleted!"
+  // })
+})
+
+
 app.get("/", function (req, res) {
   res.send("Hello world")
 })
