@@ -14,7 +14,8 @@ mongoose.connect("mongodb+srv://admin-richard:Qr731006.@atlascluster.0iwigdk.mon
 const postSchema = new mongoose.Schema({
   name: String,
   email: String,
-  message: String
+  message: String,
+  time: String
 })
 
 const Post = mongoose.model("Post", postSchema)
@@ -101,14 +102,14 @@ app.delete("/userdata", function (req, res) {
 
 app.post("/information", function (req, res) {
   const body = req.body
-
+  console.log(body);
   const post = new Post({
     name: body.name,
     email: body.email,
-    message: body.message
+    message: body.message,
+    time: body.date
   })
   post.save(function (err) {
-
   })
   // console.log(body)
   // res.json(body)
