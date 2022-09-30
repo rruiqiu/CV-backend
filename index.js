@@ -9,7 +9,8 @@ const port = process.env.PORT
 app.use(cors())
 app.use(express.json())
 const auth = process.env.AUTH
-mongoose.connect("mongodb+srv://" + auth + "@atlascluster.0iwigdk.mongodb.net/CVcontacts")
+const url = "mongodb+srv://" + auth + "@atlascluster.0iwigdk.mongodb.net/CVcontacts"
+mongoose.connect(url)
 
 const postSchema = new mongoose.Schema({
   name: String,
