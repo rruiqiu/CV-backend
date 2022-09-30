@@ -8,8 +8,8 @@ dotenv.config()
 const port = process.env.PORT
 app.use(cors())
 app.use(express.json())
-
-mongoose.connect("mongodb+srv://admin-richard:Qr731006.@atlascluster.0iwigdk.mongodb.net/CVcontacts")
+const auth = process.env.AUTH
+mongoose.connect("mongodb+srv://" + auth + "@atlascluster.0iwigdk.mongodb.net/CVcontacts")
 
 const postSchema = new mongoose.Schema({
   name: String,
